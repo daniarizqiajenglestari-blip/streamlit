@@ -1,127 +1,70 @@
 import streamlit as st
+import time
 
-# ==================================================
-# KELAS NODE KATEGORI 
-# ==================================================
+st.title("Visualisasi Sorting")
 
-class KategoriNode:
-    def __init__(self, nama_kategori):
-        self.nama = nama_kategori
-        self.sub_kategori = []
+# 1. Kontrol UI Input Data & Algoritma
+col1, col2 = st.columns(2)
+algo = col1.selectbox("Pilih Algoritma", ["Buble Sort", "Selection Sort", "Insertion Sort"])
+user_input = col2.text_input("Input Data (Pisahkan koma)", "85, 60, 92, 75, 88")
 
-    def tambah_sub(self, node_kategori):
-        self.sub_kategori.append(node_kategori)
+# 2. Keterangan Algoritma Dinamis
+if algo == "Bubble Sort":
+    st.info(" **Bubble Sort**: Membandingkan elemen bersebelahan & menukarnya jika salah urutan. Elemen terbesar 'menggelembung' ke akhir.")
+elif algo == "Selection Sort":
+    st.info(" **Selection Sort**: Memilih elemen terkecil dari bagian yang belum terurut, lalu menukarnya ke posisi paling depan.")
+elif algo == "Insertion Sort":
+    st.info(" **Insertion Sort**: Bekerja seperti mengurutkan kartu; menyisipkan elemen satu per satu ke posisi yang tepat dibagian ynag sudah terurut.")
 
-    # Mengubah fungsi print menjadi return string agar bisa ditampilkan di web
+# 3. Keamanan Input (Parsing Teks ke angka)
+try:
+    data = [int(x.strip()) for x in user_input.split(",") if x.strip()]
+except ValueError:
+    st.error("Gagal! Pastikan Anda hanya memasukkan angka.")
+    st.stop()
 
-    def dapatkan_tree_string(self, level=0):
-        indentasi = "  " * level
-        simbol = " " if level > 0 else " + "
-        hasil = f"{indentasi}{simbol}{self.nama}\n"
+# 4. Area Gambar Grafik
+chart = st.empty()
+chart.bar_chart(data)
 
-        for sub in self.sub_kategori:
-            hasil += sub.dapatkan_tree_string(level + 1)
-        return hasil
+# 5. Tombol & Logika Sorting Utama
+if st.button("Mulai Urutkan", type="primary"):
+    n = len(data)
+
+    if algo == "Bubble Sort":
+        for i in range(n):
+            for j in range(0, n - i - 1):
+                if data[j] > data[j + 1]:
+                    data[j], data[j + 1 ] = data[j + 1], data[j] # Tukar posisi
+                    chart.bar_chart(data)
+                    time.sleep(0.2)
+
+    elif algo == "Selection Sort":
+        for i in range(n):
+            min_idx = 1
+            for j in range(i + 1, n):
+                if data[j] < data[min_idx]:
+                    min_idx = j
+            data[i], data[min_idx] = data[min_idx], data[i] # Tukar ke depan
+            chart.bar_chart(data)
+            time.sleep(0.2)
+
+    elif algo == "Insertion Sort":
+        for i in range(1,n):
+            key = data[i]
+            j = i - 1
+            while j >= 0 and data[j] > key:
+                data[j + 1] = data[j] # Geser ke kanan
+                j -= 1
+                chart.bar_chart(data)
+                time.sleep(0.2)
+            data[j + 1] = key
+            chart.bar_chart(data)
+            time.sleep(0.2)
     
-    def cari_node(self, target_nama):
-        # Mencari node spesifik untuk menambahkan anak di bawahnya
-        if self.nama.lower() == target_nama.lower():
-            return self
-            
-        for sub in self.sub_kategori:
-            hasil = sub.cari_node(target_nama)
-            if hasil:
-                return hasil
-                
-        return None
 
-    def cari_jalur(self, target, path=""):
-        # Mencari jalur lengkap (breadcrumb) seperti studi kasus sebelumnya
-        jalur_saat_ini = path + " > " + self.nama if path else self.nama
-        
-        if self.nama.lower() == target.lower():
-            return jalur_saat_ini
-            
-        for sub in self.sub_kategori:
-            hasil = sub.cari_jalur(target, jalur_saat_ini)
-            if hasil:
-                return hasil
-                
-        return None
-
-# ==========================================
-# PROGRAM UTAMA (STREAMLIT UI)
-# ==========================================
-st.set_page_config(page_title="Struktur Kategori", page_icon=" + ")
-
-st.title("Pembuat Struktur Kategori")
-st.write("Aplikasi interaktif untuk mensimulasikan struktur data Tree.")
-
-# Inisialisasi session state untuk menyimpan struktur Tree agar tidak hilang saat halaman di-refresh #
-if 'root' not in st.session_state:
-    st.session_state.root = None
-
-# Jika Root belum dibuat, tampilkan form pembuatan Root 
-if st.session_state.root is None:
-    st.info("Sistem belum memiliki kategori utama.Silahkan buat terlebih dahulu.")
-    nama_root = st.text_input("Masukkan nama kategori uatama (Root):", value="Toko Saya")
-
-    if st.button("Buat kategori utama", type="primary"):
-        st.session_state.root = KategoriNode(nama_root)
-        st.rerun() # Refresh Halaman
-
-# Jika Root sudah ada, tampikkan Menu Utama menggunakan Tabs
-else:
-    root = st.session_state.root
-
-    # Mengganti menu CLI dengan sistem Tab yang lebih modern 
-    tab1, tab2, tab3 = st.tabs([" Lihat Struktur", " Tambah sub-Kategori", "Cari Jalur"])
-
-    # TAB 1: Lihat struktur
-    with tab1 :
-        st.subheader("Struktur kategori saat ini")
-        tree_teks = root.dapatkan_tree_string()
-        # Menggunakan st.code agar format indentasi (spasi) tetap rapi
-        st.code(tree_teks, language="text")
-
-    # Tab 2: Tambah Sub-kategori
-    with tab2 :
-        st.subheader("Tambah Cabang Baru")
-        induk_nama = st.text_input("Nama kategori induk tempat cabang ditambahkan:")
-        anak_nama = st.text_input("Nama sub-kategori baru:")
-
-        if st.button("Tambah kategori"):
-            if induk_nama and anak_nama:
-                induk_node = root.cari_node(induk_nama)
-                if induk_node:
-                    induk_node.tambah_sub(KategoriNode(anak_nama))
-                    st.success(f"Berhasil menambahkan '{anak_nama}' dibawah '{induk_node.nama}'!")
-                else:
-                    st.error(f"Kategori '{induk_nama}' tidak ditemukan! pastikan ejaanya benar.")
-            else:
-                st.warning("Harap isi kedua kolom di atas.")
-
-    # Tab 3: Cari Jalur
-    with tab3:
-        st.subheader("Pencarian Breadcrumb")
-        target_cari = st.text_input("Nama kategori yang ingin dicari jalurnya:")
-
-        if st.button("Cari Jalur"):
-            if target_cari:
-                hasil = root.cari_jalur(target_cari)
-                if hasil:
-                    st.success("Ditemukam!")
-                    st.info(f"Jalur: {hasil}")
-                else:
-                    st.error(f"Kategori '{target_cari}' tidak ditemukan dalam sistem.")
-
-            else:
-                st.warning("Harap isi nama kategori yang dicari.")
-# Tombol Reset
-st.divider()
-if st.button("Reset Sistem / Mulai dari Awal"):
-    st.session_state.root = None
-    st.rerun()
+    st.success(f"Sorting Selesai! Hasil: {data}")
 
 
-                
+
+
