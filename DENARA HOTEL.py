@@ -174,7 +174,6 @@ elif menu_utama == "🛟 Bantuan":
 # PROSES LOGIKA TIAP SUB-MENU
 # ==========================================
 if pilihan_menu == "🏠 Dashboard":
-    if pilihan_menu == "🏠 Dashboard":
 
     st.markdown("""
     <div class="hero">
