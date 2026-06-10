@@ -176,27 +176,29 @@ elif menu_utama == "🛟 Bantuan":
 if pilihan_menu == "🏠 Dashboard":
 
     st.markdown("""
-    if pilihan_menu == "🏠 Dashboard":
-
-    st.markdown("""
     <div class="hero">
 
+        <div class="hero-logo">
+            🏨
+        </div>
+
         <div class="hero-title">
-            DENARA
+            DENARA HOTEL
         </div>
 
-        <div class="hero-hotel">
-            HOTEL
+        <div class="hero-subtitle">
+            Where Luxury Meets Comfort
         </div>
 
-        <div class="hero-sub">
-            Luxury : Comfort : Premium Experience
+        <div class="hero-line"></div>
+
+        <div class="hero-desc">
+            Nikmati pengalaman menginap terbaik dengan fasilitas premium,
+            pelayanan eksklusif dan kenyamanan kelas dunia.
         </div>
 
-        <br>
-
-        <div class="hero-tagline">
-            ✨ Rasakan Pengalaman Menginap Kelas Dunia ✨
+        <div class="hero-button">
+            ⭐ Best Rated Hotel 2026
         </div>
 
     </div>
