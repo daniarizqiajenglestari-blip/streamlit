@@ -7,6 +7,8 @@ st.set_page_config(page_title="Denara Hotel", layout="wide", page_icon="🏨")
 
 # tampilannya agar tidak monnoton(menggunkan css)
 st.markdown("""
+<style>
+
 .hero {
     background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
                 url('https://images.unsplash.com/photo-1566073771259-6a8506099945');
@@ -50,7 +52,25 @@ st.markdown("""
     padding:25px;
     border-radius:20px;
     margin-top:20px;
+}
 
+.review-box{
+    background:white;
+    padding:15px;
+    border-radius:15px;
+    margin-bottom:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 3px 15px rgba(0,0,0,0.08);
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 # ==========================================
 # DATA MASTER & KONDISI AWAL DATABASE
