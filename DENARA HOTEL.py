@@ -153,8 +153,6 @@ elif menu_utama == "🛟 Bantuan":
 # ==========================================
 # PROSES LOGIKA TIAP SUB-MENU
 # ==========================================
-
-# --- 1. DASHBOARD ---
 if pilihan_menu == "🏠 Dashboard":
 
     st.markdown("""
@@ -296,6 +294,7 @@ if pilihan_menu == "🏠 Dashboard":
         "{u['komentar']}"
         </div>
         """, unsafe_allow_html=True)
+# --- 1. DASHBOARD ---
 
 # -- MENU 2. Reservasi Baru --
 elif pilihan_menu == "📝 Reservasi Baru":
