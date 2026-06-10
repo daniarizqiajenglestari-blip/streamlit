@@ -190,7 +190,7 @@ if pilihan_menu == "🏠 Dashboard":
         </div>
 
         <div class="hero-sub">
-            Luxury • Comfort • Premium Experience
+            Luxury : Comfort : Premium Experience
         </div>
 
         <br>
