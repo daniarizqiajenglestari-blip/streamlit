@@ -176,19 +176,29 @@ elif menu_utama == "🛟 Bantuan":
 if pilihan_menu == "🏠 Dashboard":
 
     st.markdown("""
+    if pilihan_menu == "🏠 Dashboard":
+
+    st.markdown("""
     <div class="hero">
+
         <div class="hero-title">
-        ✦ DENARA ✦
-        <br>
-        <span style="font-size:45px;color:white;letter-spacing:8px;">
-        HOTEL
-        </span>
+            DENARA
         </div>
+
+        <div class="hero-hotel">
+            HOTEL
+        </div>
+
         <div class="hero-sub">
             Luxury • Comfort • Premium Experience
         </div>
+
         <br>
-        <h3>Rasakan Pengalaman Menginap Kelas Dunia</h3>
+
+        <div class="hero-tagline">
+            ✨ Rasakan Pengalaman Menginap Kelas Dunia ✨
+        </div>
+
     </div>
     """, unsafe_allow_html=True)
 
