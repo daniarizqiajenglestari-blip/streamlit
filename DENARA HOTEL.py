@@ -177,7 +177,7 @@ if pilihan_menu == "🏠 Dashboard":
 
     st.markdown("""
     <div class="hero">
-        <div class="hero-title">
+        <div class="hero-title", font-family="Arial">
            🏨 DENARA HOTEL
         </div>
         <div class="hero-sub">
