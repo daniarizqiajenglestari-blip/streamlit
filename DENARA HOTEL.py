@@ -177,8 +177,12 @@ if pilihan_menu == "🏠 Dashboard":
 
     st.markdown("""
     <div class="hero">
-        <div class="hero-title", font-family="Cormorant Garamont">
-           🏨 DENARA HOTEL
+        <div class="hero-title">
+        ✦ DENARA ✦
+        <br>
+        <span style="font-size:45px;color:white;letter-spacing:8px;">
+        HOTEL
+        </span>
         </div>
         <div class="hero-sub">
             Luxury • Comfort • Premium Experience
