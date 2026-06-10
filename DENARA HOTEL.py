@@ -158,7 +158,7 @@ if pilihan_menu == "🏠 Dashboard":
     st.markdown("""
     <div class="hero">
         <div class="hero-title">
-            🏨 DENARA HOTEL
+           🏨 DENARA HOTEL
         </div>
         <div class="hero-sub">
             Luxury • Comfort • Premium Experience
