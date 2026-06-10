@@ -8,69 +8,87 @@ st.set_page_config(page_title="Denara Hotel", layout="wide", page_icon="🏨")
 # tampilannya agar tidak monnoton(menggunkan css)
 st.markdown("""
 <style>
+.hero{
+    background:
+    linear-gradient(
+        rgba(10,20,40,0.55),
+        rgba(10,20,40,0.55)
+    ),
+    url('https://images.unsplash.com/photo-1578683010236-d716f9a3f461');
 
-.hero {
-    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-                url('https://images.unsplash.com/photo-1566073771259-6a8506099945');
-    background-size: cover;
-    background-position: center;
-    padding: 100px 50px;
-    border-radius: 25px;
-    text-align: center;
-    color: white;
-    margin-bottom: 30px;
+    background-size:cover;
+    background-position:center;
+    padding:120px 50px;
+    border-radius:30px;
+    text-align:center;
+    color:white;
+}
+
+.hero-badge{
+    display:inline-block;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+    padding:8px 20px;
+    border-radius:30px;
+    color:#FFD700;
+    font-weight:bold;
+    margin-bottom:20px;
 }
 
 .hero-title{
-    font-size:50px;
-    font-weight:bold;
+    font-size:72px;
+    font-weight:700;
+    font-family:Georgia, serif;
+    color:#FFFFFF;
+    letter-spacing:5px;
+    text-shadow:0 5px 15px rgba(0,0,0,0.5);
 }
 
-.hero-sub{
+.hero-subtitle{
+    font-size:28px;
+    color:#FFD700;
+    font-style:italic;
+    margin-top:10px;
+}
+
+.hero-line{
+    width:180px;
+    height:3px;
+    background:#FFD700;
+    margin:20px auto;
+    border-radius:20px;
+}
+
+.hero-desc{
+    max-width:700px;
+    margin:auto;
     font-size:20px;
-    opacity:0.9;
+    line-height:1.8;
+    color:#F5F5F5;
 }
 
-.stat-card{
-    background:white;
-    padding:25px;
-    border-radius:20px;
-    text-align:center;
-    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+.hero-feature{
+    margin-top:25px;
+    font-size:20px;
+    color:#FFE082;
+    font-weight:600;
 }
 
-.facility-card{
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    text-align:center;
-    box-shadow:0 3px 15px rgba(0,0,0,0.06);
+.hero-button{
+    display:inline-block;
+    background:linear-gradient(
+        90deg,
+        #FFB300,
+        #FFD54F
+    );
+    color:#1A1A1A;
+    padding:14px 30px;
+    border-radius:40px;
+    font-size:18px;
+    font-weight:bold;
+    box-shadow:0 5px 20px rgba(255,193,7,0.4);
 }
 
-.luxury-box{
-    background:linear-gradient(135deg,#FFF5E6,#FFE6C7);
-    padding:25px;
-    border-radius:20px;
-    margin-top:20px;
-}
-
-.review-box{
-    background:white;
-    padding:15px;
-    border-radius:15px;
-    margin-bottom:10px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.05);
-}
-
-.card{
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0 3px 15px rgba(0,0,0,0.08);
-}
-
-</style>
-""", unsafe_allow_html=True)
 
 # ==========================================
 # DATA MASTER & KONDISI AWAL DATABASE
